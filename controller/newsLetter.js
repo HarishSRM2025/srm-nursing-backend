@@ -1,4 +1,4 @@
-const NewsLetter = require('../models/newsLetter/newsletter')
+const NewsLetter = require('../models/newsLetter/newsLetter')
 
 exports.uploadNewsLetter = async (req, res) => {
     try {
