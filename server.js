@@ -23,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use('/api/auth', authRoutes)
 app.use('/api/newsletter', newsLetterRoutes)
+app.use('/api/statutes', require('./route/statutes'))
+app.use('/api/affiliation', require('./route/affiliation'))
 app.use('/api/leadership', leadershipRoutes)
 app.use('/api/slider', sliderRoutes)
 app.use('/api/events', eventRoutes)
