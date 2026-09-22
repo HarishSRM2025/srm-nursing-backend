@@ -1,4 +1,5 @@
 const Events = require('../models/events/events');
+const { listEvents } = require('../services/eventListing');
 
 exports.createEvent = async(req,res) =>{
     try {
@@ -41,10 +42,9 @@ exports.createEvent = async(req,res) =>{
 
 exports.getAllEvents = async(req,res) =>{
     try {
-        const events = await Events.find().sort({ createdAt: -1 });
-        res.status(200).json({ success: true, events });
+        res.status(200).json(await listEvents(req.query));
     } catch (error) {
-        res.status(500).json({ success: false, message: "Failed to get events", error: error.message });
+        res.status(error.statusCode || 500).json({ success: false, message: error.message });
     }
 }
 

@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const plainEventTitle = require('../../utils/plainEventTitle');
 
 const eventsSchema = new mongoose.Schema({
-    title: String,
+    title: { type: String, set: plainEventTitle },
     description: String,
     startDate: Date,
     endDate: Date,
