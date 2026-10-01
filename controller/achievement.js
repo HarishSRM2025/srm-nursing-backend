@@ -123,120 +123,69 @@ const SEED_DATA = [
   }
 ];
 
-const seedAchievements = async () => {
-  try {
-    const count = await Achievement.countDocuments();
-    if (count === 0) {
-      await Achievement.insertMany(SEED_DATA);
-      console.log("Achievement records seeded successfully.");
-    }
-  } catch (err) {
-    console.error("Achievement seeding error:", err.message);
-  }
+const mongoose = require("mongoose");
+const { typeFilter, listingQuery } = require("../services/achievementListing");
+const scope = req => typeFilter(req.achievementType || "student");
+const fail = (res, error) => res.status(error.name === "ValidationError" || error.name === "CastError" || error.status === 400 ? 400 : 500).json({ success: false, message: error.message });
+const fields = ["student_or_batch", "award_or_title", "description", "year", "category", "status", "institution"];
+const payload = req => Object.fromEntries(fields.filter(key => req.body?.[key] !== undefined).map(key => [key, req.body[key]]));
+const idFilter = req => {
+  if (!mongoose.isValidObjectId(req.params.id)) throw Object.assign(new Error("Invalid achievement ID"), { status: 400 });
+  return { ...scope(req), _id: req.params.id };
 };
 
 exports.getAllAchievements = async (req, res) => {
   try {
-    await seedAchievements();
-    const { status, year, category, search } = req.query;
-    let filter = {};
-
-    if (status && status !== "All") filter.status = status;
-    if (year && year !== "All") filter.year = Number(year);
-    if (category && category !== "All") filter.category = category;
-    if (search) {
-      filter.$or = [
-        { student_or_batch: new RegExp(search, "i") },
-        { award_or_title: new RegExp(search, "i") },
-        { description: new RegExp(search, "i") },
-      ];
-    }
-
-    const achievements = await Achievement.find(filter).sort({ year: -1, sno: 1 });
-
-    const totalCount = await Achievement.countDocuments();
-    const activeCount = await Achievement.countDocuments({ status: "active" });
-    const years = await Achievement.distinct("year");
-    const categories = await Achievement.distinct("category");
-
-    res.status(200).json({
-      success: true,
-      total: achievements.length,
-      stats: { total: totalCount, active: activeCount, years: years.sort((a, b) => b - a), categories },
-      achievements,
+    const { filter, base, page, limit, paginated } = listingQuery(req.query, req.achievementType || "student");
+    const total = await Achievement.countDocuments(filter);
+    const totalPages = Math.max(1, Math.ceil(total / limit));
+    const currentPage = Math.min(page, totalPages);
+    let query = Achievement.find(filter).sort({ year: -1, sno: 1, _id: -1 });
+    if (paginated) query = query.skip((currentPage - 1) * limit).limit(limit);
+    const [achievements, years, categories, totalCount, activeCount, categoryCounts] = await Promise.all([
+      query, Achievement.distinct("year", base), Achievement.distinct("category", base),
+      Achievement.countDocuments(base), Achievement.countDocuments({ ...base, status: "active" }),
+      Achievement.aggregate([{ $match: base }, { $group: { _id: "$category", count: { $sum: 1 } } }, { $sort: { _id: 1 } }])
+    ]);
+    res.json({ success: true, total, achievements,
+      pagination: { page: currentPage, limit, total, totalPages },
+      stats: { total: totalCount, active: activeCount, years: years.sort((a,b) => b-a), categories },
+      filters: { total: totalCount, years: years.sort((a,b) => b-a), categories: categoryCounts.map(c => ({ name: c._id, count: c.count })) }
     });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to fetch achievements", error: error.message });
-  }
+  } catch (error) { fail(res, error); }
 };
-
 exports.getAchievementById = async (req, res) => {
   try {
-    const achievement = await Achievement.findById(req.params.id);
+    const achievement = await Achievement.findOne(idFilter(req));
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
-    res.status(200).json({ success: true, achievement });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to fetch achievement", error: error.message });
-  }
+    res.json({ success: true, achievement });
+  } catch (error) { fail(res, error); }
 };
-
 exports.createAchievement = async (req, res) => {
   try {
-    const { student_or_batch, award_or_title, description, year, category, status, institution } = req.body;
-    if (!student_or_batch || !award_or_title || !year) {
-      return res.status(400).json({ success: false, message: "student_or_batch, award_or_title and year are required" });
-    }
-
-    const count = await Achievement.countDocuments();
-    const achievement = new Achievement({
-      student_or_batch: student_or_batch.trim(),
-      award_or_title: award_or_title.trim(),
-      description: description ? description.trim() : "",
-      year: Number(year),
-      category: category || "General",
-      status: status || "active",
-      institution: institution || "SRM TRICHY COLLEGE OF NURSING",
-      sno: count + 1,
-    });
-
-    await achievement.save();
-    res.status(201).json({ success: true, message: "Achievement created successfully", achievement });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to create achievement", error: error.message });
-  }
+    const achievement = await Achievement.create({ ...payload(req), type: req.achievementType || "student" });
+    res.status(201).json({ success: true, achievement });
+  } catch (error) { fail(res, error); }
 };
-
 exports.updateAchievement = async (req, res) => {
   try {
-    const { student_or_batch, award_or_title, description, year, category, status, institution } = req.body;
-    const achievement = await Achievement.findByIdAndUpdate(
-      req.params.id,
-      { student_or_batch, award_or_title, description, year: year ? Number(year) : undefined, category, status, institution },
-      { new: true, runValidators: true }
-    );
+    const achievement = await Achievement.findOneAndUpdate(idFilter(req), { $set: payload(req) }, { new: true, runValidators: true });
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
-    res.status(200).json({ success: true, message: "Achievement updated successfully", achievement });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to update achievement", error: error.message });
-  }
+    res.json({ success: true, achievement });
+  } catch (error) { fail(res, error); }
 };
-
 exports.deleteAchievement = async (req, res) => {
   try {
-    const achievement = await Achievement.findByIdAndDelete(req.params.id);
+    const achievement = await Achievement.findOneAndDelete(idFilter(req));
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
-    res.status(200).json({ success: true, message: "Achievement deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Failed to delete achievement", error: error.message });
-  }
+    res.json({ success: true, message: "Achievement deleted successfully" });
+  } catch (error) { fail(res, error); }
 };
-
 exports.seedAchievements = async (req, res) => {
   try {
-    await Achievement.deleteMany({});
+    if (req.achievementType === "faculty") return res.status(400).json({ success: false, message: "No faculty seed records are available" });
+    await Achievement.deleteMany(typeFilter("student"));
     await Achievement.insertMany(SEED_DATA);
-    res.status(200).json({ success: true, message: `${SEED_DATA.length} achievement records seeded.` });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Seeding failed", error: error.message });
-  }
+    res.json({ success: true, message: `${SEED_DATA.length} student achievement records seeded.` });
+  } catch (error) { fail(res, error); }
 };

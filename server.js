@@ -33,6 +33,8 @@ app.use('/api/contact', contactRoutes)
 app.use('/api/enquiry', contactRoutes)
 app.use('/api/department', departmentRoutes)
 app.use('/api/achievement', achievementRoutes)
+app.use('/api/student-achievements', (req, res, next) => { req.achievementType = 'student'; next(); }, achievementRoutes)
+app.use('/api/faculty-achievements', (req, res, next) => { req.achievementType = 'faculty'; next(); }, achievementRoutes)
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`)
 })

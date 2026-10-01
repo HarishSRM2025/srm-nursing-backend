@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 
 const achievementSchema = new mongoose.Schema(
   {
+    type: {
+      type: String,
+      enum: ["student", "faculty"],
+      default: "student",
+      index: true,
+    },
     student_or_batch: {
       type: String,
       required: true,
@@ -20,6 +26,9 @@ const achievementSchema = new mongoose.Schema(
     year: {
       type: Number,
       required: true,
+      min: 1900,
+      max: 9999,
+      validate: Number.isInteger,
     },
     category: {
       type: String,
