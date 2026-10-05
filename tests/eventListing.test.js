@@ -53,6 +53,8 @@ test('requests only a bounded batch with stable order and global filter metadata
     assert.equal(calls.limit, 10);
     assert.deepEqual(calls.sort, { _id: -1 });
     for (const scope of ['events', 'cne']) {
+        await listEvents({ scope, page: '2', limit: '6' }, model);
+        assert.deepEqual(calls.sort, { startDate: -1, _id: -1 });
         await listEvents({ scope, sort: 'date-desc', page: '2', limit: '6' }, model);
         assert.deepEqual(calls.sort, { startDate: -1, _id: -1 });
         assert.equal(calls.skip, 6);

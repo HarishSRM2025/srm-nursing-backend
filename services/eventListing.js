@@ -61,7 +61,7 @@ function listingQuery(query) {
     if (dateFilters.length) filter.$expr = { $and: dateFilters };
     const includeFilters = stringParam(query, 'includeFilters');
     if (includeFilters && !['true', 'false'].includes(includeFilters)) throw invalid('Invalid includeFilters');
-    return { page, limit, base, filter, sort: sort === 'date-desc' ? { startDate: -1, _id: -1 } : { _id: -1 }, includeFilters: includeFilters === 'true' };
+    return { page, limit, base, filter, sort: scope || sort === 'date-desc' ? { startDate: -1, _id: -1 } : { _id: -1 }, includeFilters: includeFilters === 'true' };
 }
 
 async function listEvents(query, Model = Events) {
