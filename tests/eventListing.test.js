@@ -52,6 +52,13 @@ test('requests only a bounded batch with stable order and global filter metadata
     assert.equal(calls.skip, 20);
     assert.equal(calls.limit, 10);
     assert.deepEqual(calls.sort, { _id: -1 });
+    for (const scope of ['events', 'cne']) {
+        await listEvents({ scope, sort: 'date-desc', page: '2', limit: '6' }, model);
+        assert.deepEqual(calls.sort, { startDate: -1, _id: -1 });
+        assert.equal(calls.skip, 6);
+        assert.equal(calls.limit, 6);
+    }
+    assert.throws(() => listingQuery({ sort: 'bad' }), { statusCode: 400 });
     assert.deepEqual(calls.pipeline[0], { $match: { isActive: { $ne: 'INACTIVE' } } });
     assert.equal(result.filters.total, 30);
     assert.deepEqual(result.filters.years, ['2026']);

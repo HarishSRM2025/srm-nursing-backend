@@ -21,6 +21,8 @@ function numberParam(query, key, fallback, maximum) {
 function listingQuery(query) {
     const page = numberParam(query, 'page', 1, 1000000);
     const limit = numberParam(query, 'limit', 10, 100);
+    const sort = stringParam(query, 'sort');
+    if (sort && sort !== 'date-desc') throw invalid('Invalid sort');
     const base = {};
     const activeOnly = stringParam(query, 'activeOnly');
     if (activeOnly && !['true', 'false'].includes(activeOnly)) throw invalid('Invalid activeOnly');
@@ -59,7 +61,7 @@ function listingQuery(query) {
     if (dateFilters.length) filter.$expr = { $and: dateFilters };
     const includeFilters = stringParam(query, 'includeFilters');
     if (includeFilters && !['true', 'false'].includes(includeFilters)) throw invalid('Invalid includeFilters');
-    return { page, limit, base, filter, includeFilters: includeFilters === 'true' };
+    return { page, limit, base, filter, sort: sort === 'date-desc' ? { startDate: -1, _id: -1 } : { _id: -1 }, includeFilters: includeFilters === 'true' };
 }
 
 async function listEvents(query, Model = Events) {
@@ -67,8 +69,8 @@ async function listEvents(query, Model = Events) {
     const total = await Model.countDocuments(options.filter);
     const totalPages = Math.max(1, Math.ceil(total / options.limit));
     const page = Math.min(options.page, totalPages);
-    // _id provides a stable newest-first order even for imported events without timestamps.
-    const events = await Model.find(options.filter).sort({ _id: -1 })
+    // Sort before pagination; _id breaks ties for events with the same start date.
+    const events = await Model.find(options.filter).sort(options.sort)
         .skip((page - 1) * options.limit).limit(options.limit).lean();
     const result = { success: true, events, pagination: { page, limit: options.limit, total, totalPages } };
     if (options.includeFilters) {
