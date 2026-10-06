@@ -33,10 +33,9 @@ test('achievement schema validates recipient, type and year', () => {
     assert.ok(new Achievement({ ...valid, ...change }).validateSync());
   }
 });
-const { StudentAchievement, FacultyAchievement, achievementModel } = require('../models/achivement');
-test('student and faculty endpoints select distinct models with fixed types', async () => {
-  assert.equal(achievementModel(), StudentAchievement);
-  assert.equal(achievementModel('faculty'), FacultyAchievement);
+const StudentAchievement = require("../models/achivement/studentAchievement");
+const FacultyAchievement = require("../models/achivement/facultyAchievement");
+test('student and faculty have independent schemas, collections and fixed types', async () => {
   assert.notEqual(StudentAchievement, FacultyAchievement);
   assert.notEqual(StudentAchievement.schema, FacultyAchievement.schema);
   assert.equal(StudentAchievement.collection.name, 'student_achievements');

@@ -1,5 +1,6 @@
 const ExcelJS = require('exceljs');
-const { achievementModel } = require('../models/achivement');
+const StudentAchievement = require("../models/achivement/studentAchievement");
+const FacultyAchievement = require("../models/achivement/facultyAchievement");
 
 const columns = ['student_or_batch', 'award_or_title', 'year', 'description', 'category', 'status', 'institution'];
 const badRequest = message => Object.assign(new Error(message), { status: 400 });
@@ -20,7 +21,8 @@ async function createTemplate() {
   return workbook.xlsx.writeBuffer();
 }
 
-async function importAchievements(buffer, type = 'student', Model = achievementModel(type)) {
+async function importAchievements(buffer, type = 'student', Model = type === 'faculty' ? FacultyAchievement : StudentAchievement) {
+  if (!['student', 'faculty'].includes(type)) throw badRequest('Invalid achievement type');
   const workbook = new ExcelJS.Workbook();
   try { await workbook.xlsx.load(buffer); } catch { throw badRequest('Provide a valid .xlsx workbook'); }
   const sheet = workbook.worksheets[0];

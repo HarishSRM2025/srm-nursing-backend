@@ -1,4 +1,5 @@
-const { achievementModel } = require("../models/achivement");
+const StudentAchievement = require("../models/achivement/studentAchievement");
+const FacultyAchievement = require("../models/achivement/facultyAchievement");
 
 const mongoose = require("mongoose");
 const { typeFilter, listingQuery } = require("../services/achievementListing");
@@ -14,15 +15,15 @@ const idFilter = req => {
 exports.getAllAchievements = async (req, res) => {
   try {
     const { filter, base, page, limit, paginated } = listingQuery(req.query, req.achievementType || "student");
-    const total = await achievementModel(req.achievementType).countDocuments(filter);
+    const total = await (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).countDocuments(filter);
     const totalPages = Math.max(1, Math.ceil(total / limit));
     const currentPage = Math.min(page, totalPages);
-    let query = achievementModel(req.achievementType).find(filter).sort({ year: -1, sno: 1, _id: -1 });
+    let query = (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).find(filter).sort({ year: -1, sno: 1, _id: -1 });
     if (paginated) query = query.skip((currentPage - 1) * limit).limit(limit);
     const [achievements, years, categories, totalCount, activeCount, categoryCounts] = await Promise.all([
-      query, achievementModel(req.achievementType).distinct("year", base), achievementModel(req.achievementType).distinct("category", base),
-      achievementModel(req.achievementType).countDocuments(base), achievementModel(req.achievementType).countDocuments({ ...base, status: "active" }),
-      achievementModel(req.achievementType).aggregate([{ $match: base }, { $group: { _id: "$category", count: { $sum: 1 } } }, { $sort: { _id: 1 } }])
+      query, (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).distinct("year", base), (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).distinct("category", base),
+      (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).countDocuments(base), (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).countDocuments({ ...base, status: "active" }),
+      (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).aggregate([{ $match: base }, { $group: { _id: "$category", count: { $sum: 1 } } }, { $sort: { _id: 1 } }])
     ]);
     res.json({ success: true, total, achievements,
       pagination: { page: currentPage, limit, total, totalPages },
@@ -33,27 +34,27 @@ exports.getAllAchievements = async (req, res) => {
 };
 exports.getAchievementById = async (req, res) => {
   try {
-    const achievement = await achievementModel(req.achievementType).findOne(idFilter(req));
+    const achievement = await (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).findOne(idFilter(req));
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
     res.json({ success: true, achievement });
   } catch (error) { fail(res, error); }
 };
 exports.createAchievement = async (req, res) => {
   try {
-    const achievement = await achievementModel(req.achievementType).create({ ...payload(req), type: req.achievementType || "student" });
+    const achievement = await (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).create({ ...payload(req), type: req.achievementType || "student" });
     res.status(201).json({ success: true, achievement });
   } catch (error) { fail(res, error); }
 };
 exports.updateAchievement = async (req, res) => {
   try {
-    const achievement = await achievementModel(req.achievementType).findOneAndUpdate(idFilter(req), { $set: payload(req) }, { new: true, runValidators: true });
+    const achievement = await (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).findOneAndUpdate(idFilter(req), { $set: payload(req) }, { new: true, runValidators: true });
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
     res.json({ success: true, achievement });
   } catch (error) { fail(res, error); }
 };
 exports.deleteAchievement = async (req, res) => {
   try {
-    const achievement = await achievementModel(req.achievementType).findOneAndDelete(idFilter(req));
+    const achievement = await (req.achievementType === "faculty" ? FacultyAchievement : StudentAchievement).findOneAndDelete(idFilter(req));
     if (!achievement) return res.status(404).json({ success: false, message: "Achievement not found" });
     res.json({ success: true, message: "Achievement deleted successfully" });
   } catch (error) { fail(res, error); }
