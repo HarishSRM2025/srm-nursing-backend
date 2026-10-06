@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
-const achievementSchema = new mongoose.Schema(
+module.exports = type => new mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ["student", "faculty"],
-      default: "student",
+      enum: [type],
+      default: type,
+      immutable: true,
       index: true,
     },
     student_or_batch: {
@@ -52,4 +53,3 @@ const achievementSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Achievement", achievementSchema);

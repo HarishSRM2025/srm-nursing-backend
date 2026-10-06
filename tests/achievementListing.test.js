@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { typeFilter, listingQuery } = require('../services/achievementListing');
-const Achievement = require('../models/achievement');
+const Achievement = require('../models/achivement/facultyAchievement');
 
 test('student scope includes legacy records; faculty scope is isolated', () => {
   assert.deepEqual(typeFilter('student'), { $or: [{ type: 'student' }, { type: { $exists: false } }] });
@@ -32,4 +32,15 @@ test('achievement schema validates recipient, type and year', () => {
   for (const change of [{ student_or_batch: ' ' }, { year: 2026.5 }, { type: 'other' }]) {
     assert.ok(new Achievement({ ...valid, ...change }).validateSync());
   }
+});
+const { StudentAchievement, FacultyAchievement, achievementModel } = require('../models/achivement');
+test('student and faculty endpoints select distinct models with fixed types', async () => {
+  assert.equal(achievementModel(), StudentAchievement);
+  assert.equal(achievementModel('faculty'), FacultyAchievement);
+  assert.notEqual(StudentAchievement, FacultyAchievement);
+  const data = { student_or_batch: 'Recipient', award_or_title: 'Award', year: 2026 };
+  assert.equal(new StudentAchievement(data).type, 'student');
+  assert.equal(new FacultyAchievement(data).type, 'faculty');
+  await assert.rejects(new StudentAchievement({ ...data, type: 'faculty' }).validate());
+  await assert.rejects(new FacultyAchievement({ ...data, type: 'student' }).validate());
 });

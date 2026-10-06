@@ -5,13 +5,15 @@ const {
   createAchievement,
   updateAchievement,
   deleteAchievement,
-  seedAchievements,
+  bulkUploadAchievements,
+  downloadTemplate,
 } = require("../controller/achievement");
 
 const router = express.Router();
 
 router.get("/", getAllAchievements);
-router.get("/seed", seedAchievements);
+router.get("/template", downloadTemplate);
+router.post("/bulk-upload", require("../middleware/eventSpreadsheet"), bulkUploadAchievements);
 router.get("/:id", getAchievementById);
 router.post("/", createAchievement);
 router.put("/:id", updateAchievement);
