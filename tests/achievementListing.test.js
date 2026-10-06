@@ -27,9 +27,9 @@ test('legacy unpaginated listing remains supported', () => {
   assert.equal(listingQuery({ page: '1' }, 'faculty').paginated, true);
 });
 test('achievement schema validates recipient, type and year', () => {
-  const valid = { student_or_batch: 'Faculty member', award_or_title: 'Research award', year: 2026, type: 'faculty' };
+  const valid = { faculty_name: 'Faculty member', award_or_title: 'Research award', year: 2026, type: 'faculty' };
   assert.equal(new Achievement(valid).validateSync(), undefined);
-  for (const change of [{ student_or_batch: ' ' }, { year: 2026.5 }, { type: 'other' }]) {
+  for (const change of [{ faculty_name: ' ' }, { year: 2026.5 }, { type: 'other' }]) {
     assert.ok(new Achievement({ ...valid, ...change }).validateSync());
   }
 });
@@ -40,7 +40,7 @@ test('student and faculty have independent schemas, collections and fixed types'
   assert.notEqual(StudentAchievement.schema, FacultyAchievement.schema);
   assert.equal(StudentAchievement.collection.name, 'student_achievements');
   assert.equal(FacultyAchievement.collection.name, 'faculty_achievements');
-  const data = { student_or_batch: 'Recipient', award_or_title: 'Award', year: 2026 };
+  const data = { student_or_batch: 'Recipient', faculty_name: 'Faculty member', award_or_title: 'Award', year: 2026 };
   assert.equal(new StudentAchievement(data).type, 'student');
   assert.equal(new FacultyAchievement(data).type, 'faculty');
   await assert.rejects(new StudentAchievement({ ...data, type: 'faculty' }).validate());

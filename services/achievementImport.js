@@ -2,7 +2,7 @@ const ExcelJS = require('exceljs');
 const StudentAchievement = require("../models/achivement/studentAchievement");
 const FacultyAchievement = require("../models/achivement/facultyAchievement");
 
-const columns = ['student_or_batch', 'award_or_title', 'year', 'description', 'category', 'status', 'institution'];
+const columnsFor = type => [type === 'faculty' ? 'faculty_name' : 'student_or_batch', 'award_or_title', 'year', 'description', 'category', 'status', 'institution'];
 const badRequest = message => Object.assign(new Error(message), { status: 400 });
 function value(cell) {
   if (cell.value == null) return '';
@@ -13,9 +13,11 @@ function value(cell) {
   return String(cell.value).trim();
 }
 
-async function createTemplate() {
+async function createTemplate(type = 'student') {
+  if (!['student', 'faculty'].includes(type)) throw badRequest('Invalid achievement type');
+  const columns = columnsFor(type);
   const workbook = new ExcelJS.Workbook();
-  const sheet = workbook.addWorksheet('Achievements');
+  const sheet = workbook.addWorksheet(type === 'faculty' ? 'Faculty Achievements' : 'Student Achievements');
   sheet.columns = columns.map(key => ({ header: key, key, width: 28 }));
   sheet.getRow(1).font = { bold: true };
   return workbook.xlsx.writeBuffer();
@@ -27,6 +29,7 @@ async function importAchievements(buffer, type = 'student', Model = type === 'fa
   try { await workbook.xlsx.load(buffer); } catch { throw badRequest('Provide a valid .xlsx workbook'); }
   const sheet = workbook.worksheets[0];
   if (!sheet) throw badRequest('Workbook has no worksheets');
+  const columns = columnsFor(type);
   const headers = new Map();
   try {
     sheet.getRow(1).eachCell((cell, index) => {

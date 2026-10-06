@@ -16,7 +16,7 @@ test('imports valid rows with model defaults and reports invalid rows without sa
     async save() { saved.push(this.toObject()); return this; }
   }
   const buffer = await workbook([
-    ['student_or_batch', 'award_or_title', 'year', 'category'],
+    ['faculty_name', 'award_or_title', 'year', 'category'],
     ['Faculty A', 'Research Award', 2026, 'Research'],
     ['', 'Missing recipient', 2026, ''],
     ['Faculty B', 'Invalid year', 2026.5, ''],
@@ -67,7 +67,7 @@ test('HTTP routes accept multipart uploads, force faculty scope and expose a bla
   assert.equal((await fetch(`${url}/bulk-upload`, { method: 'POST' })).status, 400);
   const body = new FormData();
   body.append('file', new Blob([await workbook([
-    ['student_or_batch', 'award_or_title', 'year'], ['Faculty A', 'Award', 2026], ['', 'Invalid', 2026],
+    ['faculty_name', 'award_or_title', 'year'], ['Faculty A', 'Award', 2026], ['', 'Invalid', 2026],
   ])]), 'achievements.xlsx');
   const response = await fetch(`${url}/bulk-upload`, { method: 'POST', body });
   assert.equal(response.status, 207);
@@ -76,4 +76,24 @@ test('HTTP routes accept multipart uploads, force faculty scope and expose a bla
   assert.equal(report.failed, 1);
   assert.equal(saved[0].type, 'faculty');
   assert.equal((await fetch(`${url}/seed`)).status, 400);
+});
+
+test('downloaded templates use the correct recipient column and import into their matching model', async () => {
+  for (const type of ['student', 'faculty']) {
+    const Model = require(`../models/achivement/${type}Achievement`);
+    const recipient = type === 'faculty' ? 'faculty_name' : 'student_or_batch';
+    const book = new ExcelJS.Workbook();
+    await book.xlsx.load(await createTemplate(type));
+    const sheet = book.worksheets[0];
+    assert.equal(sheet.rowCount, 1);
+    assert.equal(sheet.getCell('A1').value, recipient);
+    sheet.addRow(['Recipient', 'Award', 2026]);
+    const saved = [];
+    class TestModel extends Model {
+      async save() { saved.push(this.toObject()); return this; }
+    }
+    const report = await importAchievements(await book.xlsx.writeBuffer(), type, TestModel);
+    assert.equal(report.imported, 1);
+    assert.equal(saved[0][recipient], 'Recipient');
+  }
 });

@@ -9,7 +9,7 @@ const facultyAchievementSchema = new mongoose.Schema(
       immutable: true,
       index: true,
     },
-    student_or_batch: {
+    faculty_name: {
       type: String,
       required: true,
       trim: true,

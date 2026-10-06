@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const { typeFilter, listingQuery } = require("../services/achievementListing");
 const scope = req => typeFilter(req.achievementType || "student");
 const fail = (res, error) => res.status(error.name === "ValidationError" || error.name === "CastError" || error.status === 400 ? 400 : 500).json({ success: false, message: error.message });
-const fields = ["student_or_batch", "award_or_title", "description", "year", "category", "status", "institution"];
-const payload = req => Object.fromEntries(fields.filter(key => req.body?.[key] !== undefined).map(key => [key, req.body[key]]));
+const fields = req => [req.achievementType === "faculty" ? "faculty_name" : "student_or_batch", "award_or_title", "description", "year", "category", "status", "institution"];
+const payload = req => Object.fromEntries(fields(req).filter(key => req.body?.[key] !== undefined).map(key => [key, req.body[key]]));
 const idFilter = req => {
   if (!mongoose.isValidObjectId(req.params.id)) throw Object.assign(new Error("Invalid achievement ID"), { status: 400 });
   return { ...scope(req), _id: req.params.id };
@@ -67,9 +67,9 @@ exports.bulkUploadAchievements = async (req, res) => {
 };
 exports.downloadTemplate = async (req, res) => {
   try {
-    const buffer = await require("../services/achievementImport").createTemplate();
+    const buffer = await require("../services/achievementImport").createTemplate(req.achievementType || "student");
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    res.setHeader("Content-Disposition", 'attachment; filename="achievements-template.xlsx"');
+    res.setHeader("Content-Disposition", `attachment; filename="${req.achievementType || "student"}-achievements-template.xlsx"`);
     res.send(Buffer.from(buffer));
   } catch (error) { fail(res, error); }
 };

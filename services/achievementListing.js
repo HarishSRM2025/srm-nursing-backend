@@ -20,7 +20,7 @@ function listingQuery(query, type) {
   if (query.category && !['All', 'all'].includes(query.category)) conditions.push({ category: query.category });
   if (query.search?.trim()) {
     const search = query.search.trim().slice(0, 200).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    conditions.push({ $or: ['student_or_batch', 'award_or_title', 'description', 'institution'].map(field => ({ [field]: new RegExp(search, 'i') })) });
+    conditions.push({ $or: [type === 'faculty' ? 'faculty_name' : 'student_or_batch', 'award_or_title', 'description', 'institution'].map(field => ({ [field]: new RegExp(search, 'i') })) });
   }
   return { base, filter: { $and: conditions }, page: integer(query.page, 1, Number.MAX_SAFE_INTEGER), limit: integer(query.limit, 6, 100), paginated: query.page !== undefined || query.limit !== undefined };
 }
