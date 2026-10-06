@@ -1,5 +1,57 @@
 const mongoose = require("mongoose");
-const createSchema = require("./achievementSchema");
 
-// Keep existing records accessible in the established collection.
-module.exports = mongoose.model("StudentAchievement", createSchema("student"), "achievements");
+const studentAchievementSchema = new mongoose.Schema(
+  {
+    type: {
+      type: String,
+      enum: ["student"],
+      default: "student",
+      immutable: true,
+      index: true,
+    },
+    student_or_batch: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    award_or_title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    description: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+      min: 1900,
+      max: 9999,
+      validate: Number.isInteger,
+    },
+    category: {
+      type: String,
+      enum: ["Academic", "Sports", "Cultural", "Research", "Community", "General"],
+      default: "General",
+    },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
+    institution: {
+      type: String,
+      default: "SRM TRICHY COLLEGE OF NURSING",
+    },
+    sno: {
+      type: Number,
+      default: 0,
+    },
+  },
+  { timestamps: true }
+);
+
+
+module.exports = mongoose.model("StudentAchievement", studentAchievementSchema, "student_achievements");

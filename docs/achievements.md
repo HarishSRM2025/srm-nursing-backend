@@ -1,7 +1,7 @@
 # Achievement APIs
 
 Student endpoint: `/api/student-achievements`. Faculty endpoint: `/api/faculty-achievements`.
-The existing `/api/achievement` endpoint remains a student alias, including records created before the `type` field existed.
+The `/api/achievement` endpoint remains an alias for the new student collection.
 
 Both endpoints support GET and POST at `/`, and GET, PUT and DELETE at `/:id`.
 Updates and deletes are restricted to the endpoint's achievement type.
@@ -13,7 +13,7 @@ GET query parameters: `search`, `category`, `year`, `status`, `page`, `limit` (1
 Supplying page or limit enables pagination; omitted pagination preserves the admin's full listing.
 Response includes `achievements`, `total`, `pagination`, `filters` (category counts and years), and `stats`.
 Public pages request `status=active`; filter options are scoped to that status and achievement type.
-Reads do not seed or mutate data. Seed data and the reset/seed endpoint have been removed. Existing database records are preserved.
+Reads do not seed or mutate data. Seed data and the reset/seed endpoint have been removed. The old achievements collection is no longer used; no existing data is migrated.
 
 Public routes: `/student-achievements`, `/faculty-achievements`.
 Admin routes: `/achievements` (students), `/faculty-achievements`.
@@ -31,4 +31,4 @@ Uploads append records and never reset existing data. Responses contain `total`,
 
 Use **Bulk Upload** in either admin achievement page. Successful imports refresh the listing; active records appear through the existing public achievement API.
 
-Student and faculty use separate Mongoose models in `models/achivement/studentAchievement.js` and `models/achivement/facultyAchievement.js`. Each schema fixes its type. Both retain the existing `achievements` collection so existing records remain accessible; API queries restrict records by type. Shared field definitions live in `achievementSchema.js`.
+Student and faculty use separate Mongoose models in `models/achivement/studentAchievement.js` and `models/achivement/facultyAchievement.js`. Each file defines its own independent schema with a fixed type. Students use the `student_achievements` collection and faculty use `faculty_achievements`. The shared schema has been removed. CRUD, listings and bulk uploads use the model selected by the endpoint.

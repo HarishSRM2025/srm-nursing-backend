@@ -1,6 +1,4 @@
-const typeFilter = type => type === 'faculty'
-  ? { type: 'faculty' }
-  : { $or: [{ type: 'student' }, { type: { $exists: false } }] };
+const typeFilter = type => ({ type: type === 'faculty' ? 'faculty' : 'student' });
 
 function listingQuery(query, type) {
   const invalid = message => { throw Object.assign(new Error(message), { status: 400 }); };
