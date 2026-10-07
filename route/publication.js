@@ -5,10 +5,15 @@ const {
   createPublication,
   updatePublication,
   deletePublication,
-  seedPublications
+  seedPublications,
+  bulkUploadResearch,
+  downloadResearchTemplate
 } = require("../controller/publication");
 
 const router = express.Router();
+
+router.get("/template", downloadResearchTemplate);
+router.post("/bulk-upload", require("../middleware/eventSpreadsheet"), bulkUploadResearch);
 
 router.get("/", getAllPublications);
 router.get("/get-all", getAllPublications);
