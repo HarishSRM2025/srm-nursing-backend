@@ -248,6 +248,7 @@ exports.getAllPublications = async (req, res) => {
     if (search) {
       filter.$or = [
         { title: new RegExp(search, "i") },
+        { researcher_name: new RegExp(search, "i") },
         { description: new RegExp(search, "i") }
       ];
     }
@@ -281,7 +282,7 @@ exports.getPublicationById = async (req, res) => {
 // CREATE publication
 exports.createPublication = async (req, res) => {
   try {
-    const { title, description, year, status, institution, document_title } = req.body;
+    const { researcher_name, title, description, year, status, institution, document_title } = req.body;
     
     if (!title || !year) {
       return res.status(400).json({ success: false, message: "Title and year are required" });
@@ -290,6 +291,7 @@ exports.createPublication = async (req, res) => {
     const count = await Publication.countDocuments();
 
     const publication = new Publication({
+      researcher_name,
       title: title.trim(),
       description: description ? description.trim() : "",
       year: Number(year),
@@ -309,11 +311,12 @@ exports.createPublication = async (req, res) => {
 // UPDATE publication
 exports.updatePublication = async (req, res) => {
   try {
-    const { title, description, year, status, institution, document_title } = req.body;
+    const { researcher_name, title, description, year, status, institution, document_title } = req.body;
 
     const publication = await Publication.findByIdAndUpdate(
       req.params.id,
       {
+        researcher_name,
         title,
         description,
         year: year ? Number(year) : undefined,

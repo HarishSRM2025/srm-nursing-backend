@@ -16,8 +16,8 @@ test('imports research without a recipient and reports invalid rows individually
     async save() { saved.push(this.toObject()); return this; }
   }
   const result = await importResearch(await workbook([
-    ['title', 'year', 'status'],
-    [' Study ', 2026, ''],
+    ['title', 'year', 'status', 'researcher_name'],
+    [' Study ', 2026, '', ' Dr. Example '],
     ['', 2026, ''],
     ['Invalid year', 2026.5, ''],
     ['Invalid status', 2026, 'other'],
@@ -28,6 +28,8 @@ test('imports research without a recipient and reports invalid rows individually
   assert.equal(result.failed, 4);
   assert.equal(result.results[1].row, 3);
   assert.equal(saved[0].title, 'Study');
+  assert.equal(saved[0].researcher_name, 'Dr. Example');
+  assert.equal(saved[1].researcher_name, '');
   assert.equal(saved[0].status, 'active');
   assert.equal(saved[1].status, 'inactive');
   for (const field of ['faculty_name', 'student_or_batch', 'type']) {
@@ -65,7 +67,7 @@ test('publication routes provide the research template, multipart import and rec
   assert.match(template.headers.get('content-type'), /spreadsheetml/);
   const book = new ExcelJS.Workbook();
   await book.xlsx.load(Buffer.from(await template.arrayBuffer()));
-  assert.deepEqual(book.worksheets[0].getRow(1).values.slice(1), ['title', 'year', 'description', 'status', 'institution', 'document_title']);
+  assert.deepEqual(book.worksheets[0].getRow(1).values.slice(1), ['title', 'year', 'researcher_name', 'description', 'status', 'institution', 'document_title']);
   assert.equal(book.worksheets[0].rowCount, 1);
   assert.equal((await fetch(`${url}/bulk-upload`, { method: 'POST' })).status, 400);
   for (const [rows, expected] of [
@@ -81,9 +83,10 @@ test('publication routes provide the research template, multipart import and rec
   }
   const created = await fetch(url, {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: 'Research only', year: 2026, faculty_name: 'Ignored' }),
+    body: JSON.stringify({ title: 'Research only', year: 2026, researcher_name: 'Researcher A', faculty_name: 'Ignored' }),
   });
   assert.equal(created.status, 201);
   assert.equal((await created.json()).publication.title, 'Research only');
   assert.equal(saved.at(-1).faculty_name, undefined);
+  assert.equal(saved.at(-1).researcher_name, 'Researcher A');
 });

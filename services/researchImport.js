@@ -1,7 +1,7 @@
 const ExcelJS = require('exceljs');
 const Research = require('../models/research/research');
 
-const columns = ['title', 'year', 'description', 'status', 'institution', 'document_title'];
+const columns = ['title', 'year', 'researcher_name', 'description', 'status', 'institution', 'document_title'];
 const badRequest = message => Object.assign(new Error(message), { status: 400 });
 function value(cell) {
   if (cell.value == null) return '';
