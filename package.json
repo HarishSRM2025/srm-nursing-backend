@@ -11,7 +11,9 @@
     "seed:facilities": "node scripts/seedFacilities.js",
     "seed:courses": "node scripts/seedCourses.js",
     "test:events-import": "node --test tests/eventImport.test.js",
-    "template:events": "node scripts/createEventImportTemplate.js"
+    "template:events": "node scripts/createEventImportTemplate.js",
+    "seed:placements": "node scripts/seedPlacements.js",
+    "test:placements": "node --test tests/placements.test.js"
   },
   "author": "",
   "license": "ISC",

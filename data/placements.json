@@ -1,0 +1,306 @@
+{
+  "batches": [
+    {
+      "year": "2018 – 2022 Batch",
+      "total": "39 Students",
+      "hospitals": [
+        {
+          "name": "SRM Hospital, Chennai",
+          "count": 3
+        },
+        {
+          "name": "KMC Hospital, Trichy & Chennai",
+          "count": 5
+        },
+        {
+          "name": "Meenakshi Hospital, Tanjore",
+          "count": 4
+        },
+        {
+          "name": "MGM Hospital, Chennai",
+          "count": 4
+        },
+        {
+          "name": "Apollo, Chennai",
+          "count": 6
+        },
+        {
+          "name": "GVN Hospital, Trichy",
+          "count": 5
+        },
+        {
+          "name": "Deepan Hospital, Trichy",
+          "count": 2
+        },
+        {
+          "name": "Sundaram Hospital, Trichy",
+          "count": 2
+        },
+        {
+          "name": "Omega Healthcare",
+          "count": 1
+        },
+        {
+          "name": "TSRMMCH&RC",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "year": "2019 – 2023 Batch",
+      "total": "54 Students",
+      "hospitals": [
+        {
+          "name": "Kamatchi Hospital",
+          "count": 4
+        },
+        {
+          "name": "KMC Hospital",
+          "count": 6
+        },
+        {
+          "name": "MIOT",
+          "count": 1
+        },
+        {
+          "name": "Apollo",
+          "count": 5
+        },
+        {
+          "name": "Meenakshi Hospital",
+          "count": 5
+        },
+        {
+          "name": "Our Lady Hospital",
+          "count": 3
+        },
+        {
+          "name": "Dhanabaciyam Hospital",
+          "count": 1
+        },
+        {
+          "name": "GVN Hospital",
+          "count": 3
+        },
+        {
+          "name": "Dhanalakshmi Hospital",
+          "count": 3
+        },
+        {
+          "name": "Frontline Hospital",
+          "count": 2
+        },
+        {
+          "name": "Velammal Hospital",
+          "count": 1
+        },
+        {
+          "name": "Royal Care Hospital",
+          "count": 1
+        },
+        {
+          "name": "Sri Ramakrishna Hospital",
+          "count": 5
+        },
+        {
+          "name": "Thangam Cancer Centre",
+          "count": 1
+        },
+        {
+          "name": "TSRMMCH&RC",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "year": "2020 – 2024 Batch",
+      "total": "57 Students",
+      "hospitals": [
+        {
+          "name": "Ramachandra Hospital",
+          "count": 8
+        },
+        {
+          "name": "PSG Hospital",
+          "count": 9
+        },
+        {
+          "name": "TSRMMCH&RC",
+          "count": 20
+        },
+        {
+          "name": "Revathi Medical Centre",
+          "count": 5
+        },
+        {
+          "name": "Ramakrishna Medical Centre",
+          "count": 2
+        },
+        {
+          "name": "SRM Kattankulathur",
+          "count": 4
+        },
+        {
+          "name": "Dhanalakshmi Hospital",
+          "count": 7
+        },
+        {
+          "name": "Meenakshi Hospital",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "year": "2021 – 2025 Batch",
+      "total": "58 Students",
+      "hospitals": [
+        {
+          "name": "Ramachandra Hospital",
+          "count": 13
+        },
+        {
+          "name": "SRM Trichy College of Nursing",
+          "count": 1
+        },
+        {
+          "name": "TSRMMCH&RC",
+          "count": 26
+        },
+        {
+          "name": "MGM Health Care",
+          "count": 3
+        },
+        {
+          "name": "Tagore Medical College Hospital",
+          "count": 5
+        },
+        {
+          "name": "KMC Hospital",
+          "count": 10
+        }
+      ]
+    }
+  ],
+  "internationalPlacements": [
+    {
+      "initials": "PM",
+      "name": "Ms. Pastinal M",
+      "role": "Nursing Specialist",
+      "hospital": "Al Baraya Hospital",
+      "location": "Abha, Saudi Arabia",
+      "country": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "program": "B.Sc Nursing Alumni"
+    },
+    {
+      "initials": "AS",
+      "name": "Ms. Ananthi S",
+      "role": "Nursing Specialist",
+      "hospital": "Dr. Erfan & Bagedo Hospital",
+      "location": "Jeddah, Saudi Arabia",
+      "country": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "program": "B.Sc Nursing Alumni"
+    },
+    {
+      "initials": "NK",
+      "name": "Ms. Nisha K",
+      "role": "Nursing Specialist",
+      "hospital": "Asthar Sanad Hospital",
+      "location": "Riyadh, Saudi Arabia",
+      "country": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "program": "B.Sc Nursing Alumni"
+    }
+  ],
+  "destinations": [
+    {
+      "label": "🇸🇦 Saudi Arabia",
+      "count": "3 Placed"
+    },
+    {
+      "label": "🇦🇪 UAE",
+      "count": "Upcoming"
+    },
+    {
+      "label": "🇬🇧 UK",
+      "count": "In Progress"
+    }
+  ],
+  "partners": [
+    {
+      "name": "TSRMMCH & RC",
+      "location": "Trichy"
+    },
+    {
+      "name": "Ramachandra Hospital",
+      "location": "Chennai"
+    },
+    {
+      "name": "PSG Hospital",
+      "location": "Coimbatore"
+    },
+    {
+      "name": "KMC Hospital",
+      "location": "Trichy & Chennai"
+    },
+    {
+      "name": "Apollo Hospitals",
+      "location": "Chennai"
+    },
+    {
+      "name": "SRM Hospital",
+      "location": "Chennai"
+    },
+    {
+      "name": "Sri Ramakrishna Hospital",
+      "location": "Coimbatore"
+    },
+    {
+      "name": "Meenakshi Hospital",
+      "location": "Chennai & Tanjore"
+    },
+    {
+      "name": "GVN Hospital",
+      "location": "Trichy"
+    },
+    {
+      "name": "Tagore Medical College",
+      "location": "Chennai"
+    },
+    {
+      "name": "MGM Healthcare",
+      "location": "Chennai"
+    },
+    {
+      "name": "Kamatchi Hospital",
+      "location": "Trichy"
+    }
+  ],
+  "stats": [
+    {
+      "icon": "FiUsers",
+      "number": "208",
+      "suffix": "+",
+      "label": "Total Students Placed"
+    },
+    {
+      "icon": "FiHome",
+      "number": "40",
+      "suffix": "+",
+      "label": "Hospital Partners"
+    },
+    {
+      "icon": "FiGlobe",
+      "number": "3",
+      "suffix": "",
+      "label": "Countries (International)"
+    },
+    {
+      "icon": "FiTrendingUp",
+      "number": "100",
+      "suffix": "%",
+      "label": "Placement Success Rate"
+    }
+  ]
+}

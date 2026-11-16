@@ -43,6 +43,7 @@ app.use('/api/achievement', achievementRoutes)
 app.use('/api/clubs', clubRoutes)
 app.use('/api/green-campus', greenCampusRoutes);
 app.use('/api/facilities', require('./route/facility'));
+app.use('/api/placements', require('./route/placement'));
 app.use('/api/courses', require('./route/course'));
 app.use('/api/course', require('./route/course'));
 app.use('/api/student-achievements', (req, res, next) => { req.achievementType = 'student'; next(); }, achievementRoutes)
