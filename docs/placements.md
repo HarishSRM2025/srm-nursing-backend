@@ -11,3 +11,7 @@ The frontend uses `VITE_BACKEND_API_URL`, then `VITE_API_URL`, then `http://loca
 The migrated content preserves the original published figures. The first two batch totals differ from the sums of their hospital counts; statistics also include previously published promotional figures. Confirm these with the placement office before revising them.
 
 Validation: `npm run test:placements`; frontend: `npm run build`.
+
+Admin: open `/placements` in the admin panel to add, edit, or remove records in all five sections, including nested batch hospitals. Save each section before switching sections. Discard reloads database content.
+
+`PUT /api/placements/:section` accepts `{ "items": [...] }`, where section is `batches`, `stats`, `internationalPlacements`, `destinations`, or `partners`. Requires the existing admin login Bearer token and an existing user with role `admin`. Only the selected section is replaced; an empty array clears it. Invalid records return 400. Successful saves return the same full-page response as GET and appear on the public site when reloaded.

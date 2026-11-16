@@ -1,0 +1,599 @@
+[
+  {
+    "id": "general-rules",
+    "institution": "SRM TRICHY COLLEGE OF NURSING",
+    "address": "SRM NAGAR, IRUNGALUR VILLAGE, MANACHANALLUR TALUK, TRICHY-621 105",
+    "title": "General Rules and Regulations",
+    "paragraphs": [
+      "In order to maintain discipline, dignity, smooth conduction of institutional work, SRMTCON has formed following committees which are responsible for adherence of the code of conduct."
+    ]
+  },
+  {
+    "id": "disciplinary-committee",
+    "title": "DISCIPLINARY COMMITTEE MEMBERS",
+    "subtitle": "Institutional committee responsible for maintaining campus discipline, professional dignity, and adherence to conduct codes.",
+    "table": [
+      {
+        "sno": "1",
+        "name": "Prof.Dr.Suja Suresh",
+        "position": "Principal"
+      },
+      {
+        "sno": "2",
+        "name": "Prof.Mrs.Devi.K",
+        "position": "Vice Principal"
+      },
+      {
+        "sno": "3",
+        "name": "Mrs.Aron Christy .X",
+        "position": "Professor"
+      },
+      {
+        "sno": "4",
+        "name": "Mrs. Sarmila.A",
+        "position": "Professor"
+      },
+      {
+        "sno": "5",
+        "name": "Mrs.Shanthi .P",
+        "position": "Associate Professor"
+      },
+      {
+        "sno": "6",
+        "name": "Mrs.Bebina Vincia Anjala Mary .A",
+        "position": "Associate Professor"
+      },
+      {
+        "sno": "7",
+        "name": "Ms.Akalya , B.Sc (N) III Year",
+        "position": "Student Member"
+      },
+      {
+        "sno": "8",
+        "name": "Ms.Ashibi Biju, B.Sc (N) III Year",
+        "position": "Student Member"
+      }
+    ]
+  },
+  {
+    "id": "students",
+    "institutionHeader": "SRM TRICHY COLLEGE OF NURSING CODE OF CONDUCT",
+    "title": "CODE OF CONDUCT FOR STUDENTS",
+    "intro": "Each student in our institution signs an undertaking to uphold the following codes at the time of admission:",
+    "rules": [
+      {
+        "num": 1,
+        "text": "All students are required to carry their valid identity cards to the college/clinical."
+      },
+      {
+        "num": 2,
+        "text": "Students who do not have ID cards will not be allowed on campus."
+      },
+      {
+        "num": 3,
+        "text": "All are expected to behave courteously and fairly with everyone, inside & outside the college (Be polite and well-mannered at all time)."
+      },
+      {
+        "num": 4,
+        "text": "It is expected that students arrive in the classroom five minutes or earlier each day."
+      },
+      {
+        "num": 5,
+        "text": "Ragging in any form shall be totally banned in the entire institute either at college, hostel. Clinical area, sports ground & canteen etc…"
+      },
+      {
+        "num": 6,
+        "text": "Follow dress code."
+      },
+      {
+        "num": 7,
+        "text": "Respect the faculty."
+      },
+      {
+        "num": 8,
+        "text": "Be a good role model to the junior students."
+      },
+      {
+        "num": 9,
+        "text": "Maintain silence in the class, library & corridor."
+      },
+      {
+        "num": 10,
+        "text": "Take care of the college and hospital property & help in maintaining the same."
+      },
+      {
+        "num": 11,
+        "text": "Use of mobile phones are strictly prohibited."
+      },
+      {
+        "num": 12,
+        "text": "Students are expected to attend classes & clinical regularly and punctually. Written explanation/rationale for absence or late attendance to the concerned faculty members is mandatory."
+      },
+      {
+        "num": 13,
+        "isCompound": true,
+        "text": "No leave will be taken unless approved by the Head of Department or other relevant staff.",
+        "subClauses": [
+          "On the day of arrival, a medical certificate must be produced if any medical leave has been taken.",
+          "It is completely prohibited to smoke, use tobacco products, drink alcohol, or use addictive narcotics within college premises.",
+          "Mass absences from classes, protests and demonstrations, and encouraging violence on campus are all regarded as major violations of discipline, and violators will face appropriate and severe punishments.",
+          "It is prohibited for boys to go into girls' common rooms or lounges and vice versa.",
+          "As per the educational regulations of the Tamil Nadu government, the Principal possesses Students who are found guilty of causing damage to any college property will face appropriate punishment and penalties based on the severity of the damage. Should a group of students be held accountable for the harm, they will bear equal financial penalties.",
+          "To ensure safety and punctuality, students are recommended to make use of the college transportation service.",
+          "Regular tests and assessments are important for students to take seriously.",
+          "It is anticipated of students to complete the course they have enrolled in in its entirety. A Transfer Certificate will only be provided to students who pay the necessary fees if they decide to stop in the middle of their course."
+        ]
+      },
+      {
+        "num": 14,
+        "text": "Any modifications to a student's, parent's, or guardian's residence should be immediately reported to the principal."
+      },
+      {
+        "num": 15,
+        "text": "Without the principal's approval in advance, students are not allowed to arrange excursions or meetings, attend college meetings, or collect money for any reason. It is not permitted to wander over the college premises."
+      }
+    ]
+  },
+  {
+    "id": "dress",
+    "title": "Dress Code",
+    "intro": "Students should carefully abide by the following dress code:",
+    "boys": [
+      {
+        "num": 1,
+        "text": "Should wear formal pants and shirts (half or full sleeves)"
+      },
+      {
+        "num": 2,
+        "text": "T-shirts, jeans, and casual attire are not permitted."
+      },
+      {
+        "num": 3,
+        "text": "Should wear only formal shoes (Black). Slippers, sports shoes, etc are not allowed"
+      },
+      {
+        "num": 4,
+        "text": "Should trim nails, hair, moustache, beard regularly and neatly"
+      },
+      {
+        "num": 5,
+        "text": "Neatly ironed coat with the clean uniform."
+      },
+      {
+        "num": 6,
+        "text": "The shirt should be tucked-in properly."
+      }
+    ],
+    "girls": [
+      {
+        "num": 1,
+        "text": "Neatly ironed coat with the clean uniform."
+      },
+      {
+        "num": 2,
+        "text": "Small ear stud is only permitted."
+      },
+      {
+        "num": 3,
+        "text": "Only chudithar and salwar pants with dupatta are allowed (Dupatta should be neatly pinned on both sides)."
+      },
+      {
+        "num": 4,
+        "text": "Legging, T-Shirts, jeans, short chudithar are not permitted to the college."
+      },
+      {
+        "num": 5,
+        "text": "Hair neatly tied up and only black colour clips to be used."
+      },
+      {
+        "num": 6,
+        "text": "Nail should be cut short, no mehandi or nail polish."
+      },
+      {
+        "num": 7,
+        "text": "Short chain, bangles, rings, second ear studs, nose pins not permitted to wear to the clinical."
+      },
+      {
+        "num": 8,
+        "text": "Use only black cut shoes to the clinical, descent foot wear to the college (No bathroom slippers)"
+      },
+      {
+        "num": 9,
+        "text": "No colouring of hair and free hair to the college."
+      }
+    ]
+  },
+  {
+    "id": "ragging",
+    "title": "Anti-ragging rules",
+    "subtitle": "Administrative action in the event of ragging:",
+    "rules": [
+      {
+        "num": 1,
+        "text": "The institution shall punish a student from guilty of ragging after following the procedure here in under in accordance with the Indian Nursing Council and the TamilNadu Dr.M.G.R.Medical University."
+      },
+      {
+        "num": 2,
+        "text": "The anti-ragging committee of the institution shall take an appropriate decision, in regard to punishment or otherwise, depending on the facts of each incident of ragging and nature and gravity of the incident of ragging established on the recommendations of the anti-ragging squad."
+      },
+      {
+        "num": 3,
+        "text": "The anti-ragging committee may be depending on the nature and gravity of the guilt established by the anti-ragging squad award, to those found guilt one or more of the following punishments, namely:",
+        "punishments": [
+          {
+            "num": 1,
+            "text": "Suspension from attending classes and academic privileges"
+          },
+          {
+            "num": 2,
+            "text": "Withholding/withdrawing scholarship, fellowship and other benefits."
+          },
+          {
+            "num": 3,
+            "text": "Debarring from appearing in any tests/examinations or other evaluation process"
+          },
+          {
+            "num": 4,
+            "text": "Withholding results"
+          },
+          {
+            "num": 5,
+            "text": "Debarring from representing the institution in any regional, national or international meet, tournament, youth festival, etc."
+          },
+          {
+            "num": 6,
+            "text": "Suspension/expulsion from the hostel"
+          },
+          {
+            "num": 7,
+            "text": "Cancellations of admission"
+          },
+          {
+            "num": 8,
+            "text": "Rustication from the institution for a period of one to four semesters"
+          },
+          {
+            "num": 9,
+            "text": "Expulsion from the institution and consequent debarring from admission to any other institution for a specified period"
+          }
+        ]
+      },
+      {
+        "num": 4,
+        "text": "Provided that where the persons committing for betting the act of ragging are not identified the institution shall resort to collective punishment and appeal against the order of punishment by the anti-ragging committee shall lie:",
+        "subAppeals": [
+          "In case of an order of an institution, affiliated to or constituent part of a University, to the Vice-chancellor of the University",
+          "In case of an order of the University, to its Chancellor",
+          "In case of an institution of national importance created by an act of Parliament to the Chairman or the chancellor of the institution, as the case may be."
+        ]
+      },
+      {
+        "num": 5,
+        "text": "Where in the opinion of the appointing authority, a lapse i.e. attributable to any member of the faculty or staff of the institution, in the matter of reporting or taking prompt action to prevent an incident of ragging or who display an apathetic or insensitive attitude towards complaining of ragging or who fill to take timely steps, whether required under these regulations or otherwise, to prevent an incident or incidence of ragging, then such authority shall initiate departmental disciplinary action, in accordance with the prescribed procedure of the institution, against such members of the faculty or staff."
+      },
+      {
+        "num": 6,
+        "text": "Provided that where such lapse is attributable to the head of the institutions, the authority designated to appoint such head shall take such departmental disciplinary actions; and such action shall be without prejudice to any action that may be taken under the penal laws of abetment of ragging for failure to take timely steps in the prevention of ragging or punishing any student found guilty of ragging."
+      }
+    ]
+  },
+  {
+    "id": "principal",
+    "title": "CODE OF CONDUCT FOR THE PRINCIPAL",
+    "intro": "The principal serves as an administrator, overall supervisor, and advisor for any number of academic activities, and additional responsibilities. The following are the codes of conduct that pertain to the Principal:",
+    "rules": [
+      {
+        "num": 1,
+        "text": "should recognize that every team share an identical objective of achieving an amazing outcome and contribute to the institution's growth."
+      },
+      {
+        "num": 2,
+        "text": "should treat all employees equally and refrain from discriminatory practices, such as favoring individuals based on their gender, caste, political, economic, social, or religious attributes."
+      },
+      {
+        "num": 3,
+        "text": "should take the required actions to minimize or eliminate the occurrence of sexual harassment"
+      },
+      {
+        "num": 4,
+        "text": "should maintain financial transparency in matters related to the institution"
+      },
+      {
+        "num": 5,
+        "text": "Should inculcate standard professional behavior among the staff members"
+      },
+      {
+        "num": 6,
+        "text": "Should motivate faculty members to plan and take part in symposiums, conferences, workshops, and seminars"
+      },
+      {
+        "num": 7,
+        "text": "should encourage the publication of scholarly papers and research activity"
+      },
+      {
+        "num": 8,
+        "text": "Should encourage students' extracurricular interests in order to improve their social skills and sense of self"
+      },
+      {
+        "num": 9,
+        "text": "Should follow de-centralization practice to enhance confidence among employees"
+      },
+      {
+        "num": 10,
+        "text": "Should take efforts to maintain an appropriate educational atmosphere and respect the fundamental rights of staffs and the students"
+      }
+    ]
+  },
+  {
+    "id": "faculty",
+    "title": "CODE OF CONDUCT FOR THE FACULTY MEMBERS",
+    "rules": [
+      {
+        "num": 1,
+        "text": "As aim of the teaching profession is to educate and kindle the thirst for knowledge the faculties should be concerned and dedicated towards achieving the same"
+      },
+      {
+        "num": 2,
+        "text": "Faculties should be ready to hear what kids have to say and concerned about going above and above for the less fortunate students."
+      },
+      {
+        "num": 3,
+        "text": "Faculties need to accept criticism."
+      },
+      {
+        "num": 4,
+        "text": "Regardless of caste, creed, color, gender, religion, or socioeconomic background, faculties ought to create an educational environment in the classroom and treat all students fairly."
+      },
+      {
+        "num": 5,
+        "text": "Faculties should be role models for their students, encouraging them to be curious and knowledge seekers."
+      },
+      {
+        "num": 6,
+        "text": "Faculties should instill in their students a sense of patriotism, civic duty, and community involvement in addition to helping them become professionally competent."
+      },
+      {
+        "num": 7,
+        "text": "Faculties ought to be aware of upholding the dignity of their profession."
+      },
+      {
+        "num": 8,
+        "text": "Faculties should aware of making every student to understand basics of nursing science and prepare the students to face the challenges thrown across during the practice and nurture the habit of exploring the new horizons of health care"
+      },
+      {
+        "num": 9,
+        "text": "Faculties should be enthusiastic in learning the recent advances, innovations and apply the same to become a teacher of updated knowledge"
+      },
+      {
+        "num": 10,
+        "text": "Faculties should find time to do research and create an opportunity for the students to follow it up"
+      },
+      {
+        "num": 11,
+        "text": "Faculties should involve themselves as a mentor for students in conducting seminars, CNEs, Workshops, Interactive sessions, sports and cultural activities"
+      },
+      {
+        "num": 12,
+        "text": "Faculties should behave and function in a manner described by the institution and make it a collective effort for the student’s educational, mental health and social well-being"
+      },
+      {
+        "num": 13,
+        "text": "Faculties should interact with parents of the students during Parent Teacher’s Meeting, which is conducted three times a year"
+      },
+      {
+        "num": 14,
+        "text": "Faculties should follow professional ethics and behavior to the core by executing the passion of needed training, certifications and license."
+      },
+      {
+        "num": 15,
+        "text": "Faculties should adhere to the principles of scientific research and writing."
+      },
+      {
+        "num": 16,
+        "text": "Faculties/Doctors should care the patients appropriately and honestly to the highest standard of medical care and be open enough to take peers, expert’s opinion in delivering the health care"
+      },
+      {
+        "num": 17,
+        "text": "Professional faculties should give respect to the professional fellow in a commendable manner and treat non-professional, ministerial and support staff in the same line"
+      },
+      {
+        "num": 18,
+        "text": "There should be no conflict professional work and private practice"
+      },
+      {
+        "num": 19,
+        "text": "Faculties should avoid taking unnecessary leave and maintain regularity for the smooth functioning of the institution"
+      }
+    ]
+  },
+  {
+    "id": "support",
+    "title": "CODE OF CONDUCT FOR SUPPORT STAFF",
+    "intro": "Support staff should follow and observe the following to be a person of professional conduct:",
+    "rules": [
+      {
+        "num": 1,
+        "text": "Should understand and work according to the policies of the institution and should sincerely and diligently carry out the duties delegated to them."
+      },
+      {
+        "num": 2,
+        "text": "Unless on at most emergencies leave of absence should be intimated to the supervising authorities and the institution well in advance."
+      },
+      {
+        "num": 3,
+        "text": "Should not work in any other capacity in other places during working hours and also should not be a part of a reason or part of any small business activity within the institution"
+      },
+      {
+        "num": 4,
+        "text": "Should not be a part of political, anti-secular activities and such other conduct which will hamper the institutional policies"
+      },
+      {
+        "num": 5,
+        "text": "Should treat the peers, supervisors, other officers, management and students with at most respect and should not engage in activities hurting the sentiments of the group or an individual"
+      },
+      {
+        "num": 6,
+        "text": "Should be punctual in their work to fulfil the need of their presence and smooth functioning of the day"
+      },
+      {
+        "num": 7,
+        "text": "Should handle the equipment carefully for the longevity and proper functioning of the same"
+      },
+      {
+        "num": 8,
+        "text": "Should not indulge in abuse of drugs, tobacco, pan chewing or alcohol."
+      },
+      {
+        "num": 9,
+        "text": "Should not divulge any official matters of importance (which they have proximity by virtue of their position) to anybody"
+      },
+      {
+        "num": 10,
+        "text": "Should not falsify any original document which they may have access"
+      },
+      {
+        "num": 11,
+        "text": "Should have honesty and integrity in executing the duties"
+      },
+      {
+        "num": 12,
+        "text": "Should not develop emotional relationship with students or their parents/guardians"
+      },
+      {
+        "num": 13,
+        "text": "Should respect the decision of the management and any conflict should be settled amicably"
+      },
+      {
+        "num": 14,
+        "text": "Mutual trust and goodwill created among all the group of employees will generate a harmonious environment in the campus and no individual should be a hindrance by way of their activities in action, word or thought."
+      }
+    ]
+  },
+  {
+    "id": "hostel",
+    "title": "Hostel rules",
+    "rules": [
+      {
+        "num": 1,
+        "text": "At the time of admission of a student into the hostel the student is required to submit a duly completed admission form. Any change of address/phone number/local guardian at any point of time, has to be intimated immediately to the hostel office in writing."
+      },
+      {
+        "num": 2,
+        "text": "Strictly adhere to the mess timings, food not to be taken outside the mess."
+      },
+      {
+        "num": 3,
+        "text": "Rooms once allotted to the student for an academic year will not be changed except in special situations."
+      },
+      {
+        "num": 4,
+        "text": "Roll call is mandatory at 8am and 8pm."
+      },
+      {
+        "num": 5,
+        "text": "The rooms, common areas and hostel surrounding should be kept clean, notices shall not be posted on walls and walls shall not be scribbled on."
+      },
+      {
+        "num": 6,
+        "text": "All the students are expected to be in the hostel before 7pm."
+      },
+      {
+        "num": 7,
+        "text": "If any students wish to be away from hostel during weekend holidays, Students has to take prior permission from college authorities and warden."
+      },
+      {
+        "num": 8,
+        "text": "Study hours to be maintained between 8.30pm to 10.30pm."
+      },
+      {
+        "num": 9,
+        "text": "Switch off the fans and lights while leaving the rooms. Do not waste food, water and electricity."
+      },
+      {
+        "num": 10,
+        "text": "All visitors to the hostel will have to make necessary entries in the visitor’s book in the hostel."
+      },
+      {
+        "num": 11,
+        "text": "All the cases of sickness must be reported immediately to the warden."
+      },
+      {
+        "num": 12,
+        "text": "When the students are sick she should get prior permission from the concerned class coordinator, HOI to available sick leave on working days."
+      },
+      {
+        "num": 13,
+        "text": "Students shall not stay overnight out of the hostel without prior permission of the official designated."
+      },
+      {
+        "num": 14,
+        "text": "Visitors with visitor pass are only allowed to visit the students."
+      },
+      {
+        "num": 15,
+        "text": "No visitors will be allowed to visit the hostel rooms and toilets."
+      },
+      {
+        "num": 16,
+        "text": "All the inmates should leave the hostel at least 10 minutes before the commencement of the classes"
+      },
+      {
+        "num": 17,
+        "text": "No student is allowed to stay in the hostel during the college hours without prior permission of the warden"
+      },
+      {
+        "num": 18,
+        "text": "Students are advised not to bring any valuables to the hostel."
+      },
+      {
+        "num": 19,
+        "text": "Boys are not allowed to enter the girl’s hostel and vice versa"
+      },
+      {
+        "num": 20,
+        "text": "Ragging is strictly prohibited inside the hostel. If found guilty they will be expelled from the hostel"
+      },
+      {
+        "num": 21,
+        "text": "Celebrations of any kind and partying in the hostel are not allowed"
+      },
+      {
+        "num": 22,
+        "text": "Parents who are coming to take their wards home should bring visitor’s pass without fail."
+      },
+      {
+        "num": 23,
+        "text": "Avoid late reporting to the hostel."
+      },
+      {
+        "num": 24,
+        "text": "Do not damage or lose any hostel property. If so the cost will be recover from the students responsible for such damage or loss."
+      },
+      {
+        "num": 25,
+        "text": "Avoid using cell phones after stipulated hours."
+      },
+      {
+        "num": 26,
+        "text": "Consumption of narcotic drugs in the hostel premises is strictly prohibited and punishable."
+      },
+      {
+        "num": 27,
+        "text": "Students should not participate in any Anti-National, Anti-social or Undesirable activity in or outside the Hostel/ Camps."
+      },
+      {
+        "num": 28,
+        "text": "Entertaining unauthorized Guests/ Visitors will lead to severe punishment (expulsion from the hostel)."
+      },
+      {
+        "num": 29,
+        "text": "Use of electrical appliances such as immersion heaters, electric stove, induction is strictly forbidden."
+      },
+      {
+        "num": 30,
+        "text": "Students are not allowed to use the hostel terrace."
+      }
+    ],
+    "intro": "All residents must adhere to the following hostel regulations for a safe, disciplined, and comfortable stay."
+  }
+]

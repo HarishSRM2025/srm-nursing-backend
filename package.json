@@ -13,7 +13,9 @@
     "test:events-import": "node --test tests/eventImport.test.js",
     "template:events": "node scripts/createEventImportTemplate.js",
     "seed:placements": "node scripts/seedPlacements.js",
-    "test:placements": "node --test tests/placements.test.js"
+    "test:placements": "node --test tests/placements.test.js",
+    "seed:code-of-conduct": "node scripts/seedCodeOfConduct.js",
+    "test:code-of-conduct": "node --test tests/codeOfConduct.test.js"
   },
   "author": "",
   "license": "ISC",
