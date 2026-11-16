@@ -9,7 +9,10 @@ const eventRoutes = require('./route/events')
 const publicationRoutes = require('./route/publication')
 const contactRoutes = require('./route/contact')
 const departmentRoutes = require('./route/department')
+const enquiryDepartmentRoutes = require('./route/enquiryDepartment')
 const achievementRoutes = require('./route/achievement')
+const clubRoutes = require('./route/club')
+const greenCampusRoutes = require('./route/greenCampus')
 const authRoutes = require('./route/auth')
 const path = require('path')
 const app = express();
@@ -31,8 +34,17 @@ app.use('/api/events', eventRoutes)
 app.use('/api/publication', publicationRoutes)
 app.use('/api/contact', contactRoutes)
 app.use('/api/enquiry', contactRoutes)
-app.use('/api/department', departmentRoutes)
+app.use('/api/departments', departmentRoutes)
+app.use('/api/academic-departments', departmentRoutes)
+app.use('/api/enquiry-departments', enquiryDepartmentRoutes)
+app.use('/api/enquiry-department', enquiryDepartmentRoutes)
+app.use('/api/department', enquiryDepartmentRoutes)
 app.use('/api/achievement', achievementRoutes)
+app.use('/api/clubs', clubRoutes)
+app.use('/api/green-campus', greenCampusRoutes);
+app.use('/api/facilities', require('./route/facility'));
+app.use('/api/courses', require('./route/course'));
+app.use('/api/course', require('./route/course'));
 app.use('/api/student-achievements', (req, res, next) => { req.achievementType = 'student'; next(); }, achievementRoutes)
 app.use('/api/faculty-achievements', (req, res, next) => { req.achievementType = 'faculty'; next(); }, achievementRoutes)
 app.listen(port, () => {

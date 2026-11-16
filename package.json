@@ -5,6 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
+    "seed:departments": "node scripts/seedDepartments.js",
+    "seed:clubs": "node scripts/seedClubs.js",
+    "seed:green-campus": "node scripts/seedGreenCampus.js",
+    "seed:facilities": "node scripts/seedFacilities.js",
+    "seed:courses": "node scripts/seedCourses.js",
     "test:events-import": "node --test tests/eventImport.test.js",
     "template:events": "node scripts/createEventImportTemplate.js"
   },
