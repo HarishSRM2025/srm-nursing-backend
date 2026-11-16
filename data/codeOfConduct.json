@@ -1,13 +1,5 @@
 [
-  {
-    "id": "general-rules",
-    "institution": "SRM TRICHY COLLEGE OF NURSING",
-    "address": "SRM NAGAR, IRUNGALUR VILLAGE, MANACHANALLUR TALUK, TRICHY-621 105",
-    "title": "General Rules and Regulations",
-    "paragraphs": [
-      "In order to maintain discipline, dignity, smooth conduction of institutional work, SRMTCON has formed following committees which are responsible for adherence of the code of conduct."
-    ]
-  },
+ 
   {
     "id": "disciplinary-committee",
     "title": "DISCIPLINARY COMMITTEE MEMBERS",
@@ -57,7 +49,6 @@
   },
   {
     "id": "students",
-    "institutionHeader": "SRM TRICHY COLLEGE OF NURSING CODE OF CONDUCT",
     "title": "CODE OF CONDUCT FOR STUDENTS",
     "intro": "Each student in our institution signs an undertaking to uphold the following codes at the time of admission:",
     "rules": [
