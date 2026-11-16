@@ -5,6 +5,26 @@ const seed = require('../data/codeOfConduct.json');
 const { getSections, saveSection } = require('../controller/codeOfConduct');
 const response = () => ({ code: 200, status(code) { this.code = code; return this; }, json(body) { this.body = body; return this; } });
 
+test('read order follows numeric rule numbers including nested punishments', () => {
+  const normalize = require('../utils/conductOrder');
+  const result = normalize({ rules: [
+    { num: 10, text: 'Last', punishments: [{ num: 2, text: 'B' }, { num: 1, text: 'A' }] },
+    { num: 2, text: 'Second' }, { num: 1, text: 'First' },
+  ], boys: [{ num: 2, text: 'B' }, { num: 1, text: 'A' }], table: [{ sno: '2', name: 'B' }, { sno: '1', name: 'A' }] }, true);
+  assert.deepEqual(result.rules.map(rule => rule.text), ['First', 'Second', 'Last']);
+  assert.deepEqual(result.rules.map(rule => rule.num), [1, 2, 3]);
+  assert.deepEqual(result.rules[2].punishments.map(rule => rule.text), ['A', 'B']);
+  assert.equal(result.boys[0].text, 'A');
+  assert.equal(result.table[0].name, 'A');
+});
+
+test('saving respects the chosen array order and renumbers after moves or removals', () => {
+  const normalize = require('../utils/conductOrder');
+  const result = normalize({ rules: [{ num: 3, text: 'Moved first', subClauses: ['Keep detail'] }, { num: 1, text: 'Moved second' }] });
+  assert.deepEqual(result.rules.map(rule => [rule.num, rule.text]), [[1, 'Moved first'], [2, 'Moved second']]);
+  assert.deepEqual(result.rules[0].subClauses, ['Keep detail']);
+});
+
 test('all nine seed sections validate and preserve nested content', async () => {
   assert.equal(seed.length, 9);
   for (const section of seed) await new Model(section).validate();
