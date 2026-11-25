@@ -4,9 +4,14 @@ const upload = require("../middleware/multer");
 
 const router = express.Router();
 
-router.post("/add-slider", upload.single("Image"), addSlider);
+const sliderImages = upload.fields([
+    { name: "Image", maxCount: 1 },
+    { name: "MobileImage", maxCount: 1 }
+]);
+
+router.post("/add-slider", sliderImages, addSlider);
 router.get("/get-slider", getSlider);
-router.put("/update-slider/:id", upload.single("Image"), updateSlider);
+router.put("/update-slider/:id", sliderImages, updateSlider);
 router.delete("/delete-slider/:id", deleteSlider);
 
 module.exports = router;

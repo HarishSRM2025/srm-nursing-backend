@@ -3,14 +3,15 @@ const Slider = require('../models/Slider/slider');
 exports.addSlider = async (req, res) => {
     try {
         const { Title, Description, Tag, Order, Status } = req.body;
-        if (!req.file) {
+        if (!req.files?.Image?.[0]) {
             return res.status(400).json({ success: false, message: "Image is required" });
         }
         if (!Title || !Description || !Tag || !Order || !Status) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
         const slider = new Slider({
-            Image: req.file.filename,
+            Image: req.files.Image[0].filename,
+            MobileImage: req.files.MobileImage?.[0]?.filename || '',
             Title,
             Description,
             Tag,
@@ -45,8 +46,11 @@ exports.updateSlider = async (req, res) => {
         if (Tag) slider.Tag = Tag;
         if (Order !== undefined && Order !== '') slider.Order = Number(Order);
         if (Status) slider.Status = Status;
-        if (req.file) {
-            slider.Image = req.file.filename;
+        if (req.files?.Image?.[0]) {
+            slider.Image = req.files.Image[0].filename;
+        }
+        if (req.files?.MobileImage?.[0]) {
+            slider.MobileImage = req.files.MobileImage[0].filename;
         }
         await slider.save();
         res.status(200).json({ success: true, message: "Slider updated successfully", slider });

@@ -5,6 +5,10 @@ const SliderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    MobileImage:{
+        type:String,
+        default:''
+    },
     Title:{
         type:String,
         required:true
